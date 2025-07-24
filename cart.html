@@ -78,13 +78,16 @@
       <input type="email" id="email" placeholder="Email Address" required>
       <input type="text" id="phone" placeholder="Phone Number" required>
       <textarea id="address" placeholder="Shipping Address" rows="3" required></textarea>
-      <button class="buy-btn" onclick="buyNow()">Buy Now</button>
+      <button class="buy-btn" onclick="payNow()">Pay Now with Razorpay</button>
     </div>
   </section>
 
   <footer>
     <p>© 2025 LOBO Clothing. All rights reserved.</p>
   </footer>
+
+  <!-- Razorpay Script -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
   <script>
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -130,7 +133,7 @@
       renderCart();
     }
 
-    function buyNow() {
+    function payNow() {
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
@@ -141,12 +144,45 @@
         return;
       }
 
-      alert(`Thank you ${name}! Your order has been placed.`);
-      localStorage.removeItem('cart');
-      location.reload();
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+
+      const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+      const tax = total * 0.18;
+      const grandTotal = Math.round((total + tax) * 100); // in paise
+
+      const options = {
+        key: "rzp_test_YOUR_KEY_HERE", // 👈 Replace this with your Razorpay test key
+        amount: grandTotal,
+        currency: "INR",
+        name: "LOBO Clothing",
+        description: "Order Payment",
+        image: "image/logo.png",
+        handler: function (response) {
+          alert("✅ Payment Successful!\nTransaction ID: " + response.razorpay_payment_id);
+          localStorage.removeItem("cart");
+          window.location.href = "index.html";
+        },
+        prefill: {
+          name: name,
+          email: email,
+          contact: phone
+        },
+        notes: {
+          address: address
+        },
+        theme: {
+          color: "#000"
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
     }
 
-    // Load cart when page loads
+    // Load cart
     renderCart();
   </script>
 
