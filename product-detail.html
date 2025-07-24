@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Details</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .product-detail {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      color: black;
+      border-radius: 10px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .product-detail img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .product-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .product-info h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .product-info p {
+      margin-bottom: 10px;
+    }
+
+    .product-info select,
+    .product-info input {
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 16px;
+      width: 100%;
+    }
+
+    .product-info button {
+      background-color: black;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body class="products">
+
+  <header class="sticky-header">
+    <h1 class="logo">LOBO</h1>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="product-detail" id="product-detail">
+    <!-- JS will inject content here -->
+  </section>
+
+  <a href="products.html" class="back-link">← Back to Products</a>
+
+  <footer>
+    <p>© 2025 LOBO Clothing. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const products = {
+      "wild-tee": {
+        name: "Wild Tee",
+        price: 799,
+        image: "image/tshirt1.jpg",
+        description: "Unleash your inner wild with this ultra-comfort cotton tee featuring bold minimal branding."
+      },
+      "street-hoodie": {
+        name: "Street Hoodie",
+        price: 1299,
+        image: "image/tshirt2.jpg",
+        description: "Premium fleece hoodie with a relaxed fit. Designed for urban freedom and comfort."
+      },
+      "graphic-top": {
+        name: "Graphic Top",
+        price: 899,
+        image: "image/tshirt3.jpg",
+        description: "Statement-making graphic tee crafted with breathable stretch fabric."
+      }
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get("id");
+    const product = products[productId];
+
+    const container = document.getElementById("product-detail");
+
+    if (!product) {
+      container.innerHTML = "<p>Product not found.</p>";
+    } else {
+      container.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <div class="product-info">
+          <h2>${product.name}</h2>
+          <p><strong>₹${product.price}</strong></p>
+          <p>${product.description}</p>
+
+          <label for="size">Size:</label>
+          <select id="size">
+            <option value="">Select</option>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+            <option>XL</option>
+          </select>
+
+          <label for="qty">Quantity:</label>
+          <input type="number" id="qty" min="1" value="1">
+
+          <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+        </div>
+      `;
+    }
+
+    function addToCart(name, price) {
+      const size = document.getElementById("size").value;
+      const qty = parseInt(document.getElementById("qty").value);
+
+      if (!size) {
+        alert("Please select a size.");
+        return;
+      }
+      if (qty < 1 || isNaN(qty)) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ productName: name, price, size, qty });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${qty} × ${name} (Size: ${size}) added to cart!`);
+    }
+  </script>
+</body>
+</html>
+

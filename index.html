@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LOBO Clothing</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    /* Splash Screen Styles */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 1s ease;
+    }
+
+    #splash img {
+      width: 150px;
+      animation: zoomIn 1.2s ease;
+    }
+
+    @keyframes zoomIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    body.loading main,
+    body.loading header,
+    body.loading footer {
+      display: none;
+    }
+
+    /* Featured Products */
+    .featured {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .featured h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      color: white;
+    }
+
+    .featured-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .featured-item {
+      background: rgba(255,255,255,0.85);
+      border-radius: 10px;
+      padding: 16px;
+      width: 220px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      color: black;
+    }
+
+    .featured-item:hover {
+      transform: scale(1.05);
+    }
+
+    .featured-item img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .featured-item h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .featured-item p {
+      font-size: 16px;
+      font-weight: bold;
+      color: #111;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background-color: rgba(255,255,255,0.1);
+      padding: 60px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    .testimonials h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .testimonial-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .testimonial {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      backdrop-filter: blur(4px);
+    }
+
+    .testimonial p {
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+
+    .testimonial span {
+      font-weight: bold;
+      display: block;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .testimonial-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .featured-grid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body class="home loading">
+  <!-- 🔥 Splash Screen -->
+  <div id="splash">
+    <img src="image/logo.png" alt="LOBO Logo">
+  </div>
+
+  <div class="overlay"></div>
+
+  <!-- 🔧 Sticky, Responsive Header -->
+  <header class="sticky-header" data-aos="fade-down">
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ✨ Hero Section with Background Video -->
+  <main>
+    <section class="hero video-hero" data-aos="fade-up">
+      <video autoplay muted loop playsinline class="hero-video">
+        <source src="video/hero.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-content">
+        <h2 data-aos="zoom-in" data-aos-delay="100"><u>Wear the <em>Wild</em></u></h2>
+        <p data-aos="fade-in" data-aos-delay="200"><b>LOBO</b> is a <i>premium</i> fashion brand for bold and fearless personalities.</p>
+        <small data-aos="fade" data-aos-delay="300">Founded in <sup>2018</sup></small><br><br>
+        <a href="products.html" class="btn" data-aos="fade-up" data-aos-delay="400">Shop Now</a>
+      </div>
+    </section>
+
+
+
+   <!-- 🏆 Featured Products Section -->
+<section class="featured" data-aos="fade-up">
+  <h2>Featured Products</h2>
+  <div class="featured-grid">
+
+    <div class="featured-item" data-aos="fade-up" data-aos-delay="100">
+      <img src="image/tshirt1.jpg" alt="Wild Tee">
+      <h3>Wild Tee</h3>
+      <p>₹799</p>
+      <a href="product-detail.html?id=wild-tee" class="btn-small">Buy Now</a>
+    </div>
+
+    <div class="featured-item" data-aos="fade-up" data-aos-delay="200">
+      <img src="image/tshirt2.jpg" alt="Street Hoodie">
+      <h3>Street Hoodie</h3>
+      <p>₹1299</p>
+      <a href="product-detail.html?id=street-hoodie" class="btn-small">Buy Now</a>
+    </div>
+
+    <div class="featured-item" data-aos="fade-up" data-aos-delay="300">
+      <img src="image/tshirt3.jpg" alt="Graphic Top">
+      <h3>Graphic Top</h3>
+      <p>₹899</p>
+      <a href="product-detail.html?id=graphic-top" class="btn-small">Buy Now</a>
+    </div>
+
+  </div>
+  <a href="products.html" class="btn" data-aos="fade-up" data-aos-delay="400">View All Products</a>
+</section>
+
+
+
+
+    <!-- 💬 Testimonials Section -->
+    <section class="testimonials" data-aos="fade-up">
+      <h2>What Our Customers Say</h2>
+      <div class="testimonial-container">
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="100">
+          <p>“The quality is premium and the fit is perfect. I love it!”</p>
+          <span>– Aisha R.</span>
+        </div>
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="200">
+          <p>“Feels like luxury without breaking the bank. Highly recommend LOBO!”</p>
+          <span>– Karan M.</span>
+        </div>
+        <div class="testimonial" data-aos="fade-up" data-aos-delay="300">
+          <p>“I wear my hoodie every week. The fabric is top-notch.”</p>
+          <span>– Priya D.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 📨 Newsletter Section -->
+    <section class="newsletter" data-aos="fade-up">
+      <h2>Subscribe to LOBO</h2>
+      <p>Get exclusive offers and updates straight to your inbox.</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!')">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+
+    <!-- 🖼 Instagram-style Gallery -->
+    <section class="gallery" data-aos="fade-up">
+      <h2>Style Inspiration</h2>
+      <div class="gallery-grid">
+        <img src="gallery/look1.jpg" alt="Look 1">
+        <img src="gallery/look2.jpg" alt="Look 2">
+        <img src="gallery/look3.jpg" alt="Look 3">
+        <img src="gallery/look4.jpg" alt="Look 4">
+        <img src="gallery/look5.jpg" alt="Look 5">
+        <img src="gallery/look6.jpg" alt="Look 6">
+      </div>
+    </section>
+  </main>
+
+  <!-- 🌐 Full Footer -->
+  <footer class="footer" data-aos="fade-up" data-aos-delay="500">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>LOBO</h3>
+        <p>Bold. Fearless. Premium fashion for modern street culture.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="icons/instagram.png" alt="Instagram"></a>
+<a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
+<a href="#"><img src="icons/twitter.png" alt="Twitter"></a>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LOBO Clothing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toggle Menu Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("main-nav").classList.toggle("active");
+    }
+  </script>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+  <!-- Splash Screen Script -->
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('splash').style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById('splash').style.display = 'none';
+          document.body.classList.remove('loading');
+        }, 1000);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

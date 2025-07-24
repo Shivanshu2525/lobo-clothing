@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About LOBO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="about">
+  <header>
+    <h1 class="logo">LOBO</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <h2>About LOBO</h2>
+    <p>LOBO is committed to high-quality fashion with attitude.</p>
+  </section>
+
+  <!-- 🌐 Full Footer -->
+  <footer class="footer" data-aos="fade-up" data-aos-delay="500">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>LOBO</h3>
+        <p>Bold. Fearless. Premium fashion for modern street culture.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="icons/instagram.png" alt="Instagram"></a>
+<a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
+<a href="#"><img src="icons/twitter.png" alt="Twitter"></a>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LOBO Clothing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toggle Menu Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("main-nav").classList.toggle("active");
+    }
+  </script>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+  <!-- Splash Screen Script -->
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('splash').style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById('splash').style.display = 'none';
+          document.body.classList.remove('loading');
+        }, 1000);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
+

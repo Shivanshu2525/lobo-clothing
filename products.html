@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Our Products</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function addToCart(productName, price, sizeId, qtyId) {
+      const size = document.getElementById(sizeId).value;
+      const qty = parseInt(document.getElementById(qtyId).value);
+
+      if (!size) {
+        alert("Please select a size.");
+        return;
+      }
+
+      if (qty < 1 || isNaN(qty)) {
+        alert("Please enter a valid quantity.");
+        return;
+      }
+
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.push({ productName, price, size, qty });
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${qty} x ${productName} (Size: ${size}) added to cart!`);
+    }
+  </script>
+</head>
+<body class="products">
+
+  <header>
+    <h1 class="logo">LOBO</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Our Products</h2>
+
+    <div class="product-gallery">
+      <div class="product-item">
+        <img src="image/tshirt1.jpg" alt="Wild Tee">
+        <p><strong>Wild Tee</strong><br>Price: ₹799</p>
+        <label for="size1">Size:</label>
+        <select id="size1">
+          <option value="">Select</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+        <br>
+        <label for="qty1">Qty:</label>
+        <input type="number" id="qty1" value="1" min="1">
+        <br><br>
+        <button onclick="addToCart('Wild Tee', 799, 'size1', 'qty1')">Add to Cart</button>
+      </div>
+
+      <div class="product-item">
+        <img src="image/tshirt2.jpg" alt="Street Hoodie">
+        <p><strong>Street Hoodie</strong><br>Price: ₹1299</p>
+        <label for="size2">Size:</label>
+        <select id="size2">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+        <br>
+        <label for="qty2">Qty:</label>
+        <input type="number" id="qty2" value="1" min="1">
+        <br><br>
+        <button onclick="addToCart('Street Hoodie', 1299, 'size2', 'qty2')">Add to Cart</button>
+      </div>
+    </div>
+
+
+          <div class="product-item">
+        <img src="image/tshirt4.jpg" alt="Urban Tee">
+        <p><strong>Urban Tee</strong><br>Price: ₹1299</p>
+        <label for="size2">Size:</label>
+        <select id="size2">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+        <br>
+        <label for="qty2">Qty:</label>
+        <input type="number" id="qty2" value="1" min="1">
+        <br><br>
+        <button onclick="addToCart('Street Hoodie', 1299, 'size2', 'qty2')">Add to Cart</button>
+      </div>
+    </div>
+ 
+    
+
+
+
+    <table>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Size</th>
+      </tr>
+      <tr>
+        <td>Wild Tee</td>
+        <td>₹799</td>
+        <td>M, L, XL</td>
+      </tr>
+      <tr>
+        <td>Street Hoodie</td>
+        <td>₹1299</td>
+        <td>S, M, L</td>
+      </tr>
+    </table>
+
+    <h3>About LOBO</h3>
+    <p>LOBO is committed to high-quality fashion with attitude.</p>
+  </section>
+
+
+
+
+
+
+
+<!-- 🌐 Full Footer -->
+  <footer class="footer" data-aos="fade-up" data-aos-delay="500">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>LOBO</h3>
+        <p>Bold. Fearless. Premium fashion for modern street culture.</p>
+      </div>
+      <div class="footer-column">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h4>Follow Us</h4>
+        <div class="social-icons">
+          <a href="#"><img src="icons/instagram.png" alt="Instagram"></a>
+<a href="#"><img src="icons/facebook.png" alt="Facebook"></a>
+<a href="#"><img src="icons/twitter.png" alt="Twitter"></a>
+
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 LOBO Clothing. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toggle Menu Script -->
+  <script>
+    function toggleMenu() {
+      document.getElementById("main-nav").classList.toggle("active");
+    }
+  </script>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      once: true
+    });
+  </script>
+
+  <!-- Splash Screen Script -->
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('splash').style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById('splash').style.display = 'none';
+          document.body.classList.remove('loading');
+        }, 1000);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
+
+
+
